@@ -7,11 +7,11 @@ import (
 	"time"
 )
 
-var max = 25000
-
+var max = 25000 // make this a ratio of size
+//
 func main() {
-	arrSize := 1000000
-	maxValue := 10000
+	arrSize := 1000000 // have this read in from bufio
+	maxValue := 10000  //have this read in from bufio
 	nums := generateSlice(arrSize, maxValue)
 	nums1 := copySlice(nums, arrSize)
 	nums2 := copySlice(nums, arrSize)
@@ -66,19 +66,6 @@ func timer() {
 		} else {
 			fmt.Println("...I promise, I'm working on it")
 		}
-	}
-}
-
-func selectionsort(items []int) {
-	var n = len(items)
-	for i := 0; i < n; i++ {
-		var minIdx = i
-		for j := i; j < n; j++ {
-			if items[j] < items[minIdx] {
-				minIdx = j
-			}
-		}
-		items[i], items[minIdx] = items[minIdx], items[i]
 	}
 }
 
@@ -222,20 +209,6 @@ func merge(left, right []int) (result []int) {
 	}
 
 	return
-}
-
-func insertionsort(items []int) {
-
-	var n = len(items)
-	for i := 1; i < n; i++ {
-		j := i
-		for j > 0 {
-			if items[j-1] > items[j] {
-				items[j-1], items[j] = items[j], items[j-1]
-			}
-			j = j - 1
-		}
-	}
 }
 
 func bubblesort(items []int) {
