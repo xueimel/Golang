@@ -10,8 +10,9 @@ import (
 var max = 25000 // make this a ratio of size
 //
 func main() {
-	arrSize := 1000000 // have this read in from bufio
-	maxValue := 10000  //have this read in from bufio
+	arrSize := 1000000 //number of objects to sort
+	maxValue := 10000  //max number of Values in array
+	//make copies of unsorted arrays.
 	nums := generateSlice(arrSize, maxValue)
 	nums1 := copySlice(nums, arrSize)
 	nums2 := copySlice(nums, arrSize)
@@ -19,7 +20,7 @@ func main() {
 	nums4 := copySlice(nums, arrSize)
 	nums5 := copySlice(nums, arrSize)
 
-	func() {
+	func() { //handy copy and paste lambda/anonymous functions
 		startTime := time.Now()
 		mergeSort(nums2)
 		elapsed := time.Since(startTime)
@@ -43,11 +44,6 @@ func main() {
 		elapsed := time.Since(startTime)
 		fmt.Println("Quick Sort2: Elapsed: ", elapsed)
 	}()
-	// func() {
-	// startTime := time.Now()
-	//
-	// var waiter sync.WaitGroup
-	// waiter.Add(1)
 	func() {
 		fmt.Println("Bubble sort, because why not...")
 		startTime := time.Now()
@@ -92,7 +88,7 @@ func quicksortpar(a []int) []int {
 		return a
 
 	} else {
-		var waiter sync.WaitGroup //ensures that the concurrent functions aren't left behind
+		var waiter sync.WaitGroup //ensures that the concurrent threads aren't forgotten by the main 
 		waiter.Add(2)
 
 		go func() {
@@ -233,10 +229,10 @@ func bubblesort(items []int) {
 }
 
 func generateSlice(size int, maxValue int) []int {
-	slice := make([]int, size, size)
+	lice := make([]int, size, size)
 	rand.Seed(time.Now().UnixNano())
 	for i := 0; i < size; i++ {
-		slice[i] = rand.Intn(100)
+		lice[i] = rand.Intn(100)
 	}
 	return slice
 }
